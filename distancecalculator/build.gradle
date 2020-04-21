@@ -26,8 +26,8 @@ tasks.withType(Javadoc).all {
     enabled = false
 }
 ext {
-    bintrayRepo = 'netcore'
-    bintrayName = 'netcoreName'
+    bintrayRepo = 'TestPackage'
+    bintrayName = 'distancecalculator'
 
     publishedGroupId = 'com.monika.distancecalculator'
     libraryName = 'DistanceCalculator'
