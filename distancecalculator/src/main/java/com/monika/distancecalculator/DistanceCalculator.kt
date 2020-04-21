@@ -1,8 +1,13 @@
 package com.monika.distancecalculator
 
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.sqrt
+
 class DistanceCalculator {
     companion object {
-        private val EARTH_RADIUS_IN_KILOMETERS = 6371
+        private const val EARTH_RADIUS_IN_KILOMETERS = 6371
         fun calculateDistance(
             pointA: Points,
             pointB: Points
@@ -12,14 +17,15 @@ class DistanceCalculator {
 
             val dLng = Math.toRadians(pointB.mLongitude - pointA.mLongitude)
 
-            val a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(Math.toRadians(pointA.mLatitude)) *
-                    Math.cos(Math.toRadians(pointB.mLatitude)) *
-                    Math.sin(dLng / 2) * Math.sin(dLng / 2)
+            println("Latitude $dLat and Longitude $dLng")
 
-            val c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+            val a = sin(dLat / 2) * sin(dLat / 2) + cos(Math.toRadians(pointA.mLatitude)) *
+                    cos(Math.toRadians(pointB.mLatitude)) *
+                    sin(dLng / 2) * sin(dLng / 2)
+
+            val c = 2 * atan2(sqrt(a), sqrt(1 - a))
 
             return (EARTH_RADIUS_IN_KILOMETERS * c).toFloat()
         }
     }
-
 }
